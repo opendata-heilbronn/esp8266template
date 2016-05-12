@@ -122,7 +122,7 @@ void setup() {
 
   server.begin();
   if (SERIALOUT)
-    Serial.println("HTTP server started");
+    Serial.println("Template HTTP server started");
 
 }
 
