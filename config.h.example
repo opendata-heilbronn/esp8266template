@@ -1,3 +1,0 @@
-// Wifi config
-const char* ssid = "**********";
-const char* password = "**********";
