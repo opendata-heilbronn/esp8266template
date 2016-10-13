@@ -5,7 +5,8 @@
 #include <ESP8266WebServer.h>
 #include <ArduinoJson.h>
 
-#include "config.h"
+const char* ssid = "CoworkingHN";
+const char* password = "ilovecowohn";
 
 #define SERIALOUT 1
 
@@ -117,6 +118,13 @@ void setup() {
   server.on("/action1", handleAction1);
   server.on("/action2", handleAction2);
   server.on("/getStatus", getStatus);
+  server.on("/echo", HTTP_POST, [](){
+    StaticJsonBuffer<200> newBuffer;
+    JsonObject& newjson = newBuffer.parseObject(server.arg("plain"));
+    String jsonString;
+    newjson.printTo(jsonString);
+    server.send ( 200, "text/json", jsonString );
+  });
 
   server.onNotFound(handleNotFound);
 
